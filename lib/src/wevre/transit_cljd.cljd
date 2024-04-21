@@ -10,8 +10,8 @@
   (hash-map
     (#/(clazz/Class List))
     (reify :extends #/(transit/WriteHandler List dynamic)
-      (tag [_ l] (if (sequential? l) "list" "array"))
-      (rep [_ l .tag] (if (sequential? l) (transit/TaggedValue "array" l) l))
+      (tag [_ l] (if (seq? l) "list" "array"))
+      (rep [_ l .tag] (if (seq? l) (transit/TaggedValue "array" l) l))
       (stringRep [_ _] nil))
     (#/(clazz/Class cljd/Keyword))
     (reify :extends #/(transit/WriteHandler cljd/Keyword dynamic)
